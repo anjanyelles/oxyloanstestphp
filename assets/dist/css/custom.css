@@ -1,0 +1,27 @@
+.cls{clear:both;}
+.logo-lg img{max-height: 36px;}
+.logo-mini img{max-height: 36px;}
+.marR15{margin-right: 15px;}
+.labL label{width: 30%;float: left;text-align: right;line-height: 45px; float: left;}
+.labL .form-control{width: 50%;margin: 8px auto 8px 3%;float: left;}
+.labL .input-group {
+    margin-left: 3%;
+    float: left;
+    width: 50%;
+}
+.labL .input-group .form-control{
+	width: 100%;margin: 0;
+}
+.labL .radioO label{width: 100%;line-height: 20px; text-align: left;margin-bottom: 5px; }
+.radioO{border: 0px;padding: 0px;}
+.datepickerLoan{margin-top: 15px; }
+.secduration{line-height: 30px;}
+.content{min-height: 160px;}
+.radioO{height: auto;}
+.actions_borrowings{font-size: 20px;}
+.actions_borrowings a .red{color: red;}
+.actions_borrowings a {padding:0 3px; }
+.esignnedBtn {text-align: center;}
+.esignnedBtn a{color: green;font-size: 25px;text-align: center;}
+.black{color: #000000;}
+.padt20{padding-top: 20px;}

@@ -1,0 +1,307 @@
+<?php include 'header.php';?>
+<?php include 'borrowersidebar.php';?>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <left>
+            <h1>
+                My Earnings through Invite Friend
+            </h1>
+        </left>
+        <div class="row">
+            <div class="pull-right classcopyrefLink">
+                <input type="text" id="refLinkU" style="display: none;" value="<?php echo $_SERVER['REQUEST_URI'];?>" />
+                <button onclick="copyrefLink('#refLinkU');" class="btn btn-success btn-ref btn-md" data-toggle="tooltip"
+                    title="Share this link" data-placement="left"><img
+                        src="<?php echo base_url(); ?>/assets/images/indiaflag.png" alt="India flag"
+                        class="flagimageforRef"> Invite a Lender <i class="fa fa-user-o fa_copyRefLink"
+                        aria-hidden="true"></i></button>
+            </div>
+            <div class="pull-right classcopyrefLink" style="display: none;">
+                <input type="text" id="nrirefLinkU" style="display:none;"
+                    value="<?php echo $_SERVER['REQUEST_URI']; ?>" />
+                <button onclick="copyNrirefLink('#nrirefLinkU');" class="btn btn-primary btn-md  btn-ref-nri"
+                    data-toggle="tooltip" title="Share This link" data-placement="right"><i class="fa fa-plane nriimage"
+                        aria-hidden="true"></i> Invite an NRI</button>
+
+            </div>
+            <div class="pull-right classcopyrefLink">
+                <input type="text" id="borrowerRefLinkU" style="display: none;"
+                    value="<?php echo $_SERVER['REQUEST_URI']; ?>" />
+                <button onclick="copyBorrowerrefLink('#borrowerRefLinkU');" class="btn btn-warning btn-ref-borrower"
+                    data-toggle="tooltip" title="Share This link" data-placement="bottom">Invite a Borrower <i
+                        class="fa fa-clipboard fa_copyRefLink" aria-hidden="true"></i></button>
+
+            </div>
+
+        </div>
+
+    </section>
+    <div class="cls"></div>
+    </br>
+    </br>
+    <!-- Main content -->
+    <section class="content">
+
+
+
+        <div class="cls"></div>
+
+        <div class="row customFormQ showEarnamountStatus">
+            <div class="cls"></div>
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <div class="pull-right">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="acceptedPagination pull-right">
+                                        <ul class="pagination bootpag">
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-left col-md-12">
+                            <div class="col-md-4 pull-left">
+                                <p class="download_Text">To view complete data of transactions,
+                                    </br> please download your statement here
+                                </p>
+                            </div>
+                            <div class="col-md-3 pull-left">
+                                <button class="btn btn-danger btn-lg btn4ReferralPayment pull-left"
+                                    onclick="downloadreferrencePaymentStatus('');" data-toggle="tooltip"
+                                    title="Download Referral Amount Statement" data-placement="left" target="_blank"><i
+                                        class="fa fa-download" aria-hidden="true"></i> </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="select_Box pull-right">
+                            <p class="earn_Text pull-left text-bold">Please select Earned status to </br>view paid or
+                                unpaid referral amount </p>
+                            <select class="form-select myformSelcInvestments myEarningStatus" id="myformSelcInvestments"
+                                aria-label="Default select example">
+                                <option value="" selected>--Earned Status --</option>
+                                <option value="Paid">PAID</option>
+                                <option value="Unpaid">UNPAID</option>
+                                <option value="">BOTH</option>
+                            </select>
+                        </div></br></br></br>
+                        <div class="col-md-3 pull-left mobile_Select_div">
+                            <p class="text-bold">Total Earnings : INR <span class="totalEarning">10000</span></p>
+                        </div>
+                        <div class="col-md-3 pull-left mobile_Select_div">
+                            <p class="text-bold pull-right">Paid Earnings : INR <span class="paidEarning">10000</span>
+                            </p>
+                        </div>
+                        <div class="col-md-3 pull-right mobile_Select_div">
+                            <p class="text-bold">Unpaid Earnings : INR <span class="unpaidEarning">10000</span></p>
+                        </div>
+                    </div>
+
+                    <table id="myborrowingsData" class="table table-bordered table-hover">
+                        <thead class="mobileDiv_4">
+                            <tr id="viewUserQueryStatus">
+                                <th>Referee Name</th>
+                                <th>Referee Id</th>
+                                <th>Earned Amount</th>
+                                <th>Payment Status</th>
+                                <th>Transferred On</th>
+                                <th>Remarks</th>
+
+
+
+                            </tr>
+                        </thead>
+                        <tbody id="displaywallettrns" class="displayoffers mobileDiv_3">
+
+                            <tr id="noRecordFound" class="noRecordFound" style="display:none;">
+                                <td colspan="8">No User found!</td>
+
+                            </tr>
+                            </tfoot>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+            <!-- form start -->
+
+        </div>
+        <!-- /.box -->
+</div>
+</section>
+<!-- /.content -->
+</div>
+<div class="modal  fade" id="modal-viewEMI">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <div class="row">
+                    <div class="col-xs-9">
+                        <h4 class="modal-title">Disbursement Info</h4><br /><b>If you have any queries please write to
+                            us
+                            <a
+                                href="https://oxyloans.com/new/lenderInquiries">https://oxyloans.com/new/lenderInquiries</a></b>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="acceptedPagination">
+                            <ul class="pagination bootpag">
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-9">
+                        <div class="pull-left text-bold">Sum Of Disbursement Amount :
+                            <span id="disbursmentAmount">50000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                        <tr style="background-color: #B0C4DE; border: 3px solid lightgrey;">
+                            <th>Disbursment Date</th>
+                            <th>Disbursment Amount </th>
+                            <!--    <th>Loan Id</th> -->
+                        </tr>
+                    </thead>
+                    <tbody id="binfo">
+
+                        </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>
+
+<div class="modal  fade" id="modal-viewPaymentstatus">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <div class="row">
+                    <div class="col-xs-9">
+                        <h4 class="modal-title">Payment Status Info</h4><br /><b>If you have any queries please write to
+                            us
+                            <a
+                                href="https://oxyloans.com/new/lenderInquiries">https://oxyloans.com/new/lenderInquiries</a></b>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                        <tr style="background-color: #B0C4DE; border: 3px solid lightgrey;">
+                            <th>S.no</th>
+                            <th>Deal Name</th>
+                            <th>Participated Amount</th>
+                            <th>Participated On</th>
+                            <th>Earned Amount</th>
+                            <th>Payment Status </th>
+                            <th>Transferred On</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lenderpaymentinfo">
+
+                        </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>
+
+<!-- /.content-wrapper -->
+<script id="borrowersinfo" type="text/template">
+    {{#data}}
+    <tr>
+      <td>{{disbursmentDate}}</td>
+      <td>{{disbursmentAmount}}</td>
+    </tr>
+    {{/data}}
+    </script>
+<script id="lpaymentstatus" type="text/template">
+    {{#data}}
+    <tr class="divBlock_Mob_001">
+      <td>{{sNo}}</td>
+      <td>{{dealName}}</td>
+      <td>{{participatedAmount}}</td>
+      <td> {{participatedOn}}</td>
+      <td>{{amount}}</td>
+      
+      <td>{{paymentStatus}}</td>
+      <td>{{transferredOn}}</td>
+      <!--   <td>LR{{refereeId}}</td> -->
+    </tr>
+    {{/data}}
+    </script>
+<script id="wallettransactiondetails" type="text/template">
+    {{#data}}
+    <tr class="divBlock_Mob_001">
+      
+      <td>
+
+      <span class="lable_mobileDiv">name</span>
+      {{userName}}</td>
+      <td>
+      <span class="lable_mobileDiv">refereeNewId</span>
+
+      {{refereeNewId}}</td>
+      <td>
+     <span class="lable_mobileDiv">amount</span>
+
+      {{amount}}</td>
+      <td>
+
+    <span class="lable_mobileDiv">paymentStatus</span>
+      {{paymentStatus}}</td>
+      <td>
+      <span class="lable_mobileDiv">transferredOn</span>
+
+      {{transferredOn}}</td>
+
+      <td class="col-md-3">
+      <span class="lable_mobileDiv">Remarks</span>
+
+      {{#remarks}}
+     {{remarks}}
+    {{/remarks}}
+    {{^remarks}}
+     No Remarks 
+   {{/remarks}}
+
+     
+
+
+
+    </td>
+    </tr>
+    {{/data}}
+    </script>
+<script type="text/javascript">
+$(document).ready(function() {
+    // refereeRegisteredInfo();
+    referralBonusAmountBasedONStatus('');
+
+});
+</script>
+<script src="<?php echo base_url(); ?>/assets/js/mustache.js"></script>
+<?php include 'footer.php';?>

@@ -1,0 +1,52 @@
+@charset "utf-8";
+/* CSS Document */
+@media only screen and (max-width:1420px){
+	.container{padding:0 20px;}
+}
+@media only screen and (max-width:1230px){
+}
+
+@media only screen and (max-width:1050px){
+	.middle-block{width:100%;}
+}
+@media only screen and (max-width:999px){
+.nav{margin:9px 0 0;}
+.nav ul li a{padding:14px 8px; font-size:16px;}
+
+.loan-block{width:350px;}
+.loan-block a{padding:40px 40px;}
+
+.earn-block{width:350px;}
+.earn-block a{padding:40px 40px;}
+}
+
+@media only screen and (max-width:768px){
+	.menu{display:inline-block;}	
+.nav{display:none; width:100%; background:rgba(255, 255, 255, 0.95); position:fixed; left:0; top:65px; height:100%; overflow:auto; z-index:99;}
+.nav ul li{display:block; float:none; text-align:center; border-bottom:1px solid #c7c7c7;}
+.nav ul li a{padding:13px 10px; font-size:16px; color:#000; display:block;}
+.nav ul li a.active, .nav ul li a:hover{}
+}
+
+@media only screen and (max-width:599px){
+}
+
+@media only screen and (max-width:480px){
+
+}
+
+@media only screen and (min-width:999px){
+
+}
+
+@media only screen and (min-width:769px){
+	.nav{display:inline-block !important;}
+}
+
+
+
+
+
+
+
+
