@@ -193,7 +193,7 @@ $(document).ready(function () {
 								function () {}
 							);
 						},
-					},
+					},     
 				}).done(function (data, textStatus, xhr) {
 					console.log(xhr.getResponseHeader("accessToken"));
 					accessToken = xhr.getResponseHeader("accessToken");

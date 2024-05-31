@@ -628,8 +628,8 @@
 
                 </ul> -->
             </li>
-
-            <li
+         
+            <li    
                 class="treeview displayPaymentAdmin
               <?php if ( $basePATH_URL == "admin/uploadedStatus" || $basePATH_URL == "admin/ApprovedStatus" ||$basePATH_URL == "admin/NotyetReflected" ||$basePATH_URL == "admin/ThirtyDays"|| $basePATH_URL == "admin/ECSPaymentHistory" || $basePATH_URL == "admin/Uploadfiles"|| $basePATH_URL == "admin/borrowersrecovery" || $basePATH_URL == "admin/TransactionAlerts" || $basePATH_URL == "admin/QrTransactions" || $basePATH_URL == "admin/cicReport"){?>active menu-open<?php } ?>">
                 <!-- <a href="#">
@@ -637,8 +637,11 @@
                     <span>PAYMENTS</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a> -->
+                    </span> 
+                </a> -->              
+
+
+
                 <ul class="treeview-menu">
 
                     <li <?php if ($basePATH_URL == "admin/uservalidityfee"){?> class="active" <?php } ?>>
@@ -646,6 +649,9 @@
                             <span>User Validity Fee </span>
                         </a>
                     </li>
+
+
+
 
 
                     <!-- 
@@ -656,6 +662,10 @@
                     </li>
 
 
+
+
+
+                    
 
 
                     <li <?php if ($basePATH_URL == "admin/uploadedStatus"){?> class="active" <?php } ?>>
