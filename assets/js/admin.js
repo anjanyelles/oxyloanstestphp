@@ -1509,27 +1509,49 @@ function loadLendersApplications() {
 		};
 	} else {
 		
-		var postData = {
-			leftOperand: {
-				fieldName: "userPrimaryType",
-				fieldValue: "LENDER",
-				operator: "EQUALS",
-			},
+		// var postData = {
+		// 	leftOperand: {
+		// 		fieldName: "userPrimaryType",
+		// 		fieldValue: "LENDER",
+		// 		operator: "EQUALS",
+		// 	},
 
-			logicalOperator: "AND",
+		// 	logicalOperator: "AND",
 
-			rightOperand: {
-				fieldName: "user.status",
-				fieldValue: "REGISTERED",
-				operator: "EQUALS",
-			},
-			page: {
-				pageNo: 1,
-				pageSize: 10,
-			},
-			sortBy: "loanRequestedDate",
-			sortOrder: "DESC",
-		};
+		// 	rightOperand: {
+		// 		fieldName: "user.status",
+		// 		fieldValue: "REGISTERED",
+		// 		operator: "EQUALS",
+		// 	},
+		// 	page: {
+		// 		pageNo: 1,
+		// 		pageSize: 10,
+		// 	},
+		// 	sortBy: "loanRequestedDate",
+		// 	sortOrder: "DESC",
+		// };
+
+		var postData={
+		
+			"leftOperand": {
+					"fieldName": "userPrimaryType",
+					"fieldValue": "LENDER",
+					"operator": "EQUALS"
+				},
+				"logicalOperator": "AND",
+				"rightOperand": {
+					"fieldName": "user.status",
+					"fieldValue": "REGISTERED",
+					"operator": "EQUALS"
+				},
+				"page": {
+					"pageNo": 1,
+					"pageSize": 10
+				},
+				"sortBy": "loanRequestedDate",
+				"sortOrder": "DESC"
+
+		}
 	}
 
 	var postData = JSON.stringify(postData);
@@ -1568,7 +1590,7 @@ function loadLendersApplications() {
 				.bootpag({
 					total: displayPageNo,
 					page: 1,
-					maxVisible: 5,
+					maxVisible: 10,
 					leaps: true,
 					firstLastUse: true,
 					first: "←",
@@ -1621,7 +1643,7 @@ function loadLendersApplications() {
 			},
 			page: {
 				pageNo: num,
-				pageSize: 5,
+				pageSize: 10,
 			},
 			sortBy: "loanRequestedDate",
 			sortOrder: "DESC",
