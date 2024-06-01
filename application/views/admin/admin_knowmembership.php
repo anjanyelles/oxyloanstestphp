@@ -96,7 +96,27 @@ $dealName =  isset($_GET['dealName']) ? $_GET['dealName'] : 'NORMAL';
 </div>
 
 
-
+<div class="modal modal-danger fade" id="modal-transactiondanger">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">    Error
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+    
+            </div>
+            <div class="modal-body">
+       
+            </div>
+            <div class="modal-footer">
+                <a href="#">
+                    <button type="button" class="btn btn-outline pull-right" data-dismiss="modal">OK</button>
+                </a>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 <script type="text/javascript">
 $(document).ready(function() {
  knowmembership();

@@ -23457,12 +23457,12 @@ function readingQueriesFromUsers(ticketId, dealName, dealId) {
 		var updateUserQuery =
 			"http://35.154.48.120:8080/oxynew/v1/user/" +
 			suserId +
-			"/readingQueriesFromUserstest";
+			"/readingQueriesFromUsers";
 	} else {
 		var updateUserQuery =
 			"https://fintech.oxyloans.com/oxyloans/v1/user/" +
 			suserId +
-			"/readingQueriesFromUserstest";
+			"/readingQueriesFromUsers";
 	}
 
 	if (dealName != "null" && dealId != "null") {

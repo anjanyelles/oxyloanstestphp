@@ -1290,6 +1290,19 @@ $("#loadingSec").show();
 		},
 		error: function (xhr, textStatus, errorThrown) {
 			console.log("Error Something");
+			if (xhr.status === 400) {
+				var errorData = JSON.parse(xhr.responseText);
+				// Extract the error message from the parsed response
+				var errorMessage = errorData.errorMessage;
+				
+				// Show the modal dialog
+				$("#modal-transactiondanger").modal("show");
+				// Display the error message in the modal body
+				$("#modal-transactiondanger .modal-body").html(errorMessage);
+				setTimeout(function () {
+					location.reload();
+				}, 4000);
+			}
 		},
 		beforeSend: function (xhr) {
 			xhr.setRequestHeader("accessToken", accessToken);
@@ -34505,16 +34518,55 @@ const holdAmountRequest = () => {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				$("#modal-holdrequestedSubmitted").modal("show");
+           console.log(data.errorCode)
+				if(data.errorCode == "101"){
+					console.log(data)
+					var errorData = data.errorMessage
+				
+					
+					// Show the modal dialog
+					$("#modal-transactiondanger").modal("show");
+					// Display the error message in the modal body
+					$("#modal-transactiondanger .modal-body").html(errorData);
+					setTimeout(function () {
+						location.reload();
+					}, 4000);
+				}else  if(data.errorCode == 400){
+					var errorData = data.errorMessage
+				
+					
+					// Show the modal dialog
+					$("#modal-transactiondanger").modal("show");
+					// Display the error message in the modal body
+					$("#modal-transactiondanger .modal-body").html(errorData);
+					setTimeout(function () {
+						location.reload();
+					}, 4000);
+				}else  if(data.errorCode == 404){
+					var errorData = data.errorMessage;
+				
+					
+					// Show the modal dialog
+					$("#modal-transactiondanger").modal("show");
+					// Display the error message in the modal body
+					$("#modal-transactiondanger .modal-body").html(errorData);
+					setTimeout(function () {
+						location.reload();
+					}, 4000);
+				}
+				else{
+					$("#modal-holdrequestedSubmitted").modal("show");
 
-				$("#holdUser_id").val("");
-				$("#hold_amount").val("");
-				$("#hold_comments").val("");
-				$("#submit_hold_request").attr("disabled", false);
+					$("#holdUser_id").val("");
+					$("#hold_amount").val("");
+					$("#hold_comments").val("");
+					$("#submit_hold_request").attr("disabled", false);
+				}
+		
 
-				setTimeout(function () {
-					location.reload();
-				}, 5500);
+				// setTimeout(function () {
+				// 	location.reload();
+				// }, 5500);
 			})
 			.catch((error) => {
 				console.log(error)
