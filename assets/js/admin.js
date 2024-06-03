@@ -1309,6 +1309,118 @@ $("#loadingSec").show();
 		},
 	});
 }
+
+function submitHoldINterestAmount(){
+ 
+	const sprimaryType = getCookie("sUserType");
+	const saccessToken = getCookie("saccessToken");
+
+	var userid = $("#hold_InterestUser_id").val();
+	var userdealId = $("#holdUser_Interest_deal_id").val();
+	var holdAmount = $("#hold_Interest_amount").val();
+	let requestDate = $("#hold_Date_amount").val();
+	var comments = $(".hold-Interest_amount-text").val();
+
+	var isValid = true;
+
+	if (userid == "") {
+		$(".error_Interest_Hold_UserId").show();
+		isValid = false;
+	} else {
+		$(".error_Interest_Hold_UserId").hide();
+	}
+
+
+	if (userdealId == "") {
+		$(".error_Interest_Hold_DealId").show();
+		isValid = false;
+	} else {
+		$(".error_Interest_Hold_DealId").hide();
+	}
+
+	if (holdAmount == "") {
+		$(".error_Interest_Hold_Amount").show();
+		isValid = false;
+	} else {
+		$(".error_Interest_Hold_Amount").hide();
+	}
+
+
+	 if (requestDate == "") {
+		$(".error_Interest_Hold_Date").show();
+		isValid = false;
+	} else {
+		$(".error_Interest_Hold_Date").hide();
+
+	}
+
+	if (comments == "") {
+		$(".error_Interest_Comments").show();
+		isValid = false;
+	} else {
+		$(".error_Interest_Comments").hide();
+	}
+
+  let interestUpdateDate=requestDate!="" ? requestDate.split("-"):requestDate;
+
+   var postData = {
+		userId:userid.substring(2),
+		dealId:userdealId,
+		remarks:comments,
+		amount:holdAmount,
+		day:interestUpdateDate[2],
+		month:interestUpdateDate[1],
+		year:interestUpdateDate[0]
+		
+	};
+
+
+	var postData = JSON.stringify(postData);
+
+	console.log(postData);
+
+	if (userisIn == "local") {
+		var updateInterestAmount = apiBaseURLOXY + "interest_hold_amount";
+	} else {
+		var updateInterestAmount = apiBaseURLOXY + "interest_hold_amount";
+	}
+	
+
+	if (isValid == true) {
+		$.ajax({
+			url: updateInterestAmount,
+			type: "PATCH",
+			data: postData,
+			contentType: "application/json",
+			dataType: "json",
+			success: function (data, textStatus, xhr) {
+				$("#modal-holdrequestedSubmitted").modal("show");
+			},
+			error: function (xhr, textStatus, errorThrown) {
+				console.log("error");
+				console.log("Error Something");
+							console.log(xhr)
+							if (xhr.status === 400) {
+								var errorData = JSON.parse(xhr.responseText);
+								// Extract the error message from the parsed response
+								var errorMessage = errorData.errorMessage;
+								
+								// Show the modal dialog
+								$("#modal-transactiondanger").modal("show");
+								// Display the error message in the modal body
+								$("#modal-transactiondanger .modal-body").html(errorMessage);
+								setTimeout(function () {
+									location.reload();
+								}, 4000);
+							}
+			},
+			beforeSend: function (xhr) {
+				xhr.setRequestHeader("accessToken", saccessToken);
+			},
+		});
+	}
+	return isValid;
+}
 function knowmembership() {
 
 	const suserId = getCookie("sUserId");
@@ -1428,6 +1540,7 @@ function knowmembership() {
 						},
 						error: function (xhr, textStatus, errorThrown) {
 							console.log("Error Something");
+							
 						},
 						beforeSend: function (xhr) {
 							xhr.setRequestHeader("accessToken", accessToken);
