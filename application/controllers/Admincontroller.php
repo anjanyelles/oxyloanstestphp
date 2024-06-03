@@ -586,9 +586,15 @@ class Admincontroller extends Globalcontroller {
 	public function fdStatistics(){
       $this->load->view('admin/admin_fdStatistics');
 	}
-	// public function topLendingUsers(){
-	// 	$this->load->view('admin/admin_topLendingUsers');
-	//   }
+	public function topLendingUsers1(){
+		$this->load->view('admin/admin_topLendingUsers1');
+	  }
+  
+
+
+
+
+	
 	public function topReferralBonus(){
 		$this->load->view('admin/admin_topReferralBonus');
 	  }
@@ -603,10 +609,6 @@ class Admincontroller extends Globalcontroller {
 			}
 			
 
-			public function topLendingUsers(){
-				$this->load->view('admin/admin_topLendingUsers');
-				}
-			
 		// $route['admin/feepaidusers'] = 'Admincontroller/feepaidusers';
 	public function insertPendingInformation(){
       $this->load->view('admin/admin_insertPendingInformation');

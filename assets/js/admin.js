@@ -27278,9 +27278,9 @@ const resolvedQueries = (status, usertype) => {
 
 	let getDeals;
 	if (userisIn == "local") {
-		getDeals = apiBaseURLOXY + "queryDetailsBasedOnPrimaryType";
+		getDeals = apiBaseURLOXY + "testqueryDetailsBasedOnPrimaryType";
 	} else {
-		getDeals = apiBaseURLOXY + "queryDetailsBasedOnPrimaryType";
+		getDeals = apiBaseURLOXY + "testqueryDetailsBasedOnPrimaryType";
 	}
 
 	var postData = {
@@ -27354,9 +27354,9 @@ const resolvedQueries = (status, usertype) => {
 
 					let getDeals;
 					if (userisIn == "local") {
-						getDeals = apiBaseURLOXY + "queryDetailsBasedOnPrimaryType";
+						getDeals = apiBaseURLOXY + "testqueryDetailsBasedOnPrimaryType";
 					} else {
-						getDeals = apiBaseURLOXY + "queryDetailsBasedOnPrimaryType";
+						getDeals = apiBaseURLOXY + "testqueryDetailsBasedOnPrimaryType";
 					}
 
 					$.ajax({

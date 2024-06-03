@@ -395,6 +395,10 @@ class Admincontroller extends Globalcontroller {
 	$this->load->view('admin/admin_topReferralBonus');
 	}
 
+
+	// public function topLendingUsers(){
+	// 	$this->load->view('admin/admin_topLendingUsers');
+	// 	}
 	public function feepaidusers(){
 	$this->load->view('admin/admin_feepaidusers');
 	}

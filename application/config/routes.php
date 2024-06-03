@@ -436,7 +436,10 @@ $route['admin/fdmonthlyloansInfo'] = 'Admincontroller/fdmonthlyloansInfo';
 $route['admin/fdpaymentDashboard'] = 'Admincontroller/fdpaymentDashboard';
 $route['admin/fdClosedDetails'] = 'Admincontroller/fdClosedDetails';
 $route['admin/topReferralBonus'] = 'Admincontroller/topReferralBonus';
+$route['admin/topLendingUsers1'] = 'Admincontroller/topLendingUsers1';
 $route['admin/topLendingUsers'] = 'Admincontroller/topLendingUsers';
+
+
 $route['admin/membershipFee'] = 'Admincontroller/membershipFee';
 
 $route['admin/feepaidusers'] = 'Admincontroller/feepaidusers';
