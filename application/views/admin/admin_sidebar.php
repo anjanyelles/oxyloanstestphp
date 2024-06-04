@@ -3238,10 +3238,10 @@
                                 class="fa fa-circle-o"></i>Check Lender Dashboard</a>
                     </li>
 
-                    <li <?php if ($basePATH_URL == "admin/lenderwalletamountdetails"){?> class="hi-tree-menu" <?php }?>>
+                    <!-- <li <?php if ($basePATH_URL == "admin/lenderwalletamountdetails"){?> class="hi-tree-menu" <?php }?>>
                         <a href="lenderwalletamountdetails" class="mywallettransactionslist"><i
                                 class="fa fa-circle-o"></i>wallet Transactions history</a>
-                    </li>
+                    </li> -->
                     <li <?php if ($basePATH_URL == "admin/lendersemiamount"){?> class="hi-tree-menu" <?php }?>>
                         <a href="lendersemiamount" class="lendersemiamount"><i class="fa fa-circle-o"></i>Lenders EMI
                             Amount Detail</a>

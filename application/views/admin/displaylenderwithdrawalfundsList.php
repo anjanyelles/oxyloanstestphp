@@ -363,9 +363,9 @@ Update On :  {{approvedOn}}
 </div>
 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 window.onload = loadlenderswithdrawfundslist();
-</script>
+</script> -->
 
 <style type="text/css">
 #example2 tr th,
