@@ -35619,7 +35619,7 @@ const fetchfeecalculation = async (borrowerId) => {
 			const data = await response.json();
 			$(".interestForfiftenDays").html(data.calculation[0]["Days 15"]);
 			$(".interestForthirtyDays").html(data.calculation[1]["Days 30"]);
-			$(".interestForfourtyDays").html(data.calculation[2]["Days 45"]);
+			$(".interestForfourtyDays").html(data.calculation[2]["Days 45"]); 
 
 			return data;
 		}
