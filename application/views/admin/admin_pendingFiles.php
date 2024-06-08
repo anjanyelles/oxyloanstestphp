@@ -20,6 +20,11 @@
                                 </span></a></li>
                         <li role="tab"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i
                                     class="fa fa-file" aria-hidden="true"></i> <span>Pending Interest</span></a></li>
+
+                        <li role="tab" class="active1"><a href="#home1" aria-controls="home1" role="tab"
+                                data-toggle="tab"><i class="fa fa-money"></i> <span>
+                                    Approval files
+                                </span></a></li>
                     </ul>
 
                     <!-- Tab panes -->
@@ -31,7 +36,7 @@
                                         <div class="col-xs-12">
                                             <div class="box" style="margin-top:0px!important; border: none!important;">
                                                 <div class="box-header" style="padding:0px!important;">
-                                                    <h4 style="margin-left:10px;" class="text-bold">Pending Principal
+                                                    <h4 style="margin-left:10px;" class="text-bold"> Pending Principal
                                                         Files</h4>
                                                 </div>
                                                 <div class="box-body">
@@ -97,6 +102,94 @@
 
                             </div>
                         </div>
+
+                        <div class="tab-pane" id="home1">
+                            <div class="" style="width:100%;">
+                                <div class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="box" style="margin-top:0px!important; border: none!important;">
+                                                <div class="box-header" style="padding:0px!important;">
+                                                    <h4 style="margin-left:10px;" class="text-bold"> Approval
+                                                        <!-- PrincipalFiles -->
+                                                        Files
+                                                    </h4>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-2 text-center">
+                                                        <select class="form-control choosenType" id="Search">
+                                                            <option value="">-- Choose --</option>
+                                                            <option value="registerStartEndDate">Date Range</option>
+
+                                                        </select>
+                                                        <span class="errorsearch" style="display: none;">Please choose
+                                                            option</span>
+                                                    </div>
+                                                    <div class="col-xs-2 text-center registerStartdatediv"
+                                                        style="display: none;">
+                                                        <select type="text" name="status"
+                                                            class="form-control lenderInterest1">
+                                                            <option name="lenderInterest">lenderInterest</option>
+                                                            <option name="withdrawalinterest">withdrawalinterest
+                                                            </option>
+                                                            <option name="principalinterest">principalinterest</option>
+                                                            <option name="principal">principal</option>
+
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-xs-2 text-center registerStartdatediv"
+                                                        style="display: none;">
+                                                        <input type="text" name="registerStartdate"
+                                                            class="form-control  registerStartdate"
+                                                            placeholder="start Date">
+                                                    </div>
+
+                                                    <div class="col-xs-2 text-center registerUserEnddatediv"
+                                                        style="display: none;">
+                                                        <input type="text" name="registerUserEnddatediv"
+                                                            class="form-control registerUserEnddate"
+                                                            placeholder="End date">
+                                                    </div>
+                                                    <div class="col-xs-2 text-center">
+                                                        <button type="button" class="btn bg-gray pull-left search-btn"
+                                                            onclick="registerLenderDownload();"><i
+                                                                class="fa fa-angle-double-right"></i> <b>Search</b>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+
+                                                <!-- <table>
+    
+
+                                                </table> -->
+
+                                                <div class="box-body">
+
+<table id="example 2" class="table table-bordered table-hover">
+    <thead>
+        <tr id="example">
+            <th>Deal Id</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody id="displayPendingFilesData22">
+
+        <tr style="display: none;" id="displaypendingH2h">
+            <td colspan="12">No data found</td>
+        </tr>
+
+        </tfoot>
+</table>
+</div>
+                                            </div>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -138,6 +231,24 @@
       </tr>
       {{/data}}
       </script>
+      
+    <script id="displayPendingFilesTpl1" type="text/template">
+        {{#data}}
+      <tr>
+        <td>{{dealId}}</td>
+        <td>{{amount}}</td>
+      </tr>
+      {{/data}}
+      </script>
+
+    <script id="scriptfdinvoiceList" type="x-tmpl-mustache">
+        {{#data}}
+        <tr>
+            <td>{{dealId}}</td>
+            <td>{{amount}}</td>
+        </tr>
+        {{/data}}
+    </script>
 
     <script id="displayPendingH2hFiles" type="text/template">
         {{#data}}
@@ -159,6 +270,7 @@
       </tr>
       {{/data}}
       </script>
+      
     <script type="text/javascript">
     window.onload = pendingPrincipalFiles();
     window.onload = pendingH2HFiles();

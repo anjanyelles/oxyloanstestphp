@@ -14,7 +14,19 @@ if (userisIn == "prod") {
 } else {
 	apiBaseURLOXY =
 		"http://35.154.48.120:8080/oxynew/v1/user/";
-}
+}   
+
+
+
+
+// if (userisIn == "prod") {
+// 	apiBaseURLOXY = "https://fintech.oxyloans.com/oxyloans/v1/user/";
+// } else {
+// 	apiBaseURLOXY =
+// 	"http://ec2-15-207-239-145.ap-south-1.compute.amazonaws.com:8080/oxyloans/v1/user/";
+// }
+
+
 $(document).ready(function () {
 	(function () {
 		checkuserTypeBeforeLoad();
@@ -14781,9 +14793,9 @@ function savewithdrawfundsComments() {
 	var id = $(".withdrawfundsCommentsBtn").attr("data-clickedid");
 
 	if (userisIn == "local") {
-		var updateCommentUrl = apiBaseURLOXY + "updatewithdrawalfundsstatus";
+		var updateCommentUrl = apiBaseURLOXY + "updatewithdrawalfundsstatustestusers";
 	} else {
-		var updateCommentUrl = apiBaseURLOXY + "updatewithdrawalfundsstatus";
+		var updateCommentUrl = apiBaseURLOXY + "updatewithdrawalfundsstatustestusers";
 	}
 
 	var postData = {
@@ -14844,9 +14856,9 @@ function savewithdrawfundsrejectComments() {
 	var id = $(".withdrawfundsCommentsrejectBtn").attr("data-clickedid");
 
 	if (userisIn == "local") {
-		var updateCommentUrl = apiBaseURLOXY + "updatewithdrawalfundsstatus";
+		var updateCommentUrl = apiBaseURLOXY + "updatewithdrawalfundsstatustestusers";
 	} else {
-		var updateCommentUrl = apiBaseURLOXY + "updatewithdrawalfundsstatus";
+		var updateCommentUrl = apiBaseURLOXY + "updatewithdrawalfundsstatustestusers";
 	}
 
 	var postData = {
@@ -39185,77 +39197,6 @@ const excelPreviewMessage=()=>{
 }
 
 
-
-
-const registerLenderDownload = async () => {
-
-	const suserId = getCookie("sUserId");
-	const sprimaryType = getCookie("sUserType");
-	const saccessToken = getCookie("saccessToken");
-
-	const paymentUpdateUrl = `${apiBaseURLOXY}newLenders_excel_sheet`;
-
-	const startDate = $(".registerStartdate").val();
-	const endDate = $(".registerUserEnddate").val();
-
-	const postData = {
-		startDate,
-		endDate,
-	};
-
-	const postDataJson = JSON.stringify(postData);
-
-	try {
-		const response = await fetch(paymentUpdateUrl, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-				accessToken: saccessToken,
-			},
-			body: postDataJson,
-		});
-
-		if (!response.ok) {
-			$(".fdinvoiceNodata").show();
-			throw new Error("Request failed with status " + response.status);
-		} else if (response.ok) {
-			const data = await response.json();
-			console.log(data);
-
-			if (data.length == 0) {
-				$(".fdinvoiceNodata").show();
-				
-			} else {
-				
-				$(".fdinvoiceNodata").hide();
-
-				
-                 const newArray=[];
-
-                   const obj={
-                   	so:1,
-                   	downloadUrl:data.downloadUrl,
-                   	emailSent : data.emailStatus ,
-                   }
-                  newArray.push(obj);
-
-				const template = document.getElementById(
-					"scriptfdinvoiceList"
-				).innerHTML;
-				Mustache.parse(template);
-				const html = Mustache.to_html(template, {
-					data: newArray,
-				});
-				$("#displayfdinvoiceList").html(html);
-			}
-		}
-	} catch (error) {
-		$(".fdmonthlyNodata").show();
-		console.info("Error Something Went Wrong");
-	}
-};
-
-
 const lenderdashboardGraphs = async () => {
 
 	const suserId = getCookie("sUserId");
@@ -39636,6 +39577,398 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 }
 
 
+
+function loadapproverefereamount11() {
+
+
+    const suserId = getCookie("sUserId");
+    const sprimaryType = getCookie("sUserType");
+    const saccessToken = getCookie("saccessToken");
+
+    let adminUrl = (userisIn === "local") ?
+        apiBaseURLOXY + "activLendersParicipationAmountAndCount" :
+        apiBaseURLOXY + "activLendersParicipationAmountAndCount";
+
+    var postdata = {
+        pageNo: 1,
+        pageSize: 10
+    };
+
+	$.ajax({
+		url: adminUrl,
+		type: "POST",
+		data: JSON.stringify(postdata),
+		contentType: "application/json",
+		headers: {
+			"accessToken": saccessToken
+		},
+		success: function(data, textStatus, xhr) {
+			console.log(data);
+			$(".totalCount11").html(data.totalCount);
+
+			var template = document.getElementById("activeLendersResponse11").innerHTML;
+            Mustache.parse(template);
+            var html = Mustache.render(template, { data: data.activeLendersResponse }); // Render the template with the data
+            $("#activeLendersResponseContainer").html(html);
+			
+	
+		},
+		error: function(xhr, textStatus, errorThrown) {
+			console.log("Error Something");
+			alert("****** You must login as a ADMIN before write comments for a borrower.****First login as a admin and then click on the link to write the comments.");
+		}
+	});
+	
+}
+
+
+function loadapproverefereamountlender() {
+
+
+    const suserId = getCookie("sUserId");
+    const sprimaryType = getCookie("sUserType");
+    const saccessToken = getCookie("saccessToken");
+
+	var lenderid = $(".id input").val();
+	lenderid = lenderid.substr(2);
+
+    let adminUrl = (userisIn === "local") ? 
+        apiBaseURLOXY + lenderid  + "/activLendersParicipationAmountAndCount" :
+        apiBaseURLOXY + lenderid  +"/activLendersParicipationAmountAndCount";
+
+  
+
+	$.ajax({
+		url: adminUrl,
+		type: "GET",
+		contentType: "application/json",
+		headers: {
+			"accessToken": saccessToken
+		},
+		success: function(data, textStatus, xhr) {
+			console.log(data);
+		
+
+			var template = document.getElementById("activeLendersResponse11").innerHTML;
+            Mustache.parse(template);
+            var html = Mustache.render(template, { data: data }); // Render the template with the data
+            $("#activeLendersResponseContainer").html(html);
+			
+	
+		},
+		error: function(xhr, textStatus, errorThrown) {
+			console.log("Error Something");
+			alert("****** You must login as a ADMIN before write comments for a borrower.****First login as a admin and then click on the link to write the comments.");
+		}
+	});
+	
+}
+
+
+const numberOfRegisteredUsers = async (pageNo  , pageSize ) => {
+
+	const suserId = getCookie("sUserId");
+	const sprimaryType = getCookie("sUserType");
+	const saccessToken = getCookie("saccessToken");
+
+
+	const paymentUpdateUrl = `${apiBaseURLOXY}numberOfRegisteredUsers`;
+	// const paymentUpdateUrl = ``;
+	const currentDate = new Date();
+	const year = currentDate.getFullYear();
+	const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Adding 1 because getMonth() returns zero-based month
+	const day = String(currentDate.getDate()).padStart(2, '0');
+	
+	const date = `${year}-${month}-${day}`;
+	console.log(date);
+	const postData ={
+		"pageNo":1,
+	"pageSize":10,
+	"startDate":"2024-02-01",
+	"endDate":date,
+	"primaryType":"LENDER"
+	}
+	
+
+	const postDataJson = JSON.stringify(postData);
+
+	try {
+		const response = await fetch(paymentUpdateUrl, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				accessToken: saccessToken,
+			},
+			body: postDataJson,
+		});
+
+		if (!response.ok) {
+			$(".fdinvoiceNodata").show();
+			throw new Error("Request failed with status " + response.status);
+		} else if (response.ok) {
+			const data = await response.json();
+
+			console.log(data);
+
+			if (data.length == 0) {
+				$(".fdinvoiceNodata").show();
+			} else {
+				const newArray = [];
+				data.userDataList.map((data, index) => {
+					newArray.push({
+						userId: data.userId,
+						userName: data.userName,
+						mobileNumber: data.mobileNumber,
+						panNumber: data.panNumber,
+						address: data.address,
+						email: data.email,
+						primaryType: data.primaryType,
+						registeredDate: data.registeredDate,
+					});
+				});
+
+				const template = document.getElementById(
+					"scriptfdinvoiceList11"
+				).innerHTML;
+				Mustache.parse(template);
+				const html = Mustache.to_html(template, {
+					data: newArray,
+				});
+				$("#displayfdinvoiceList11").html(html);
+
+
+				console.log(data.count)
+				 var displayPageNo = data.count;
+            displayPageNo = Math.ceil(displayPageNo / 10); // Calculate total pages			
+            console.log(data.count);
+        /*888888888888888*/
+         $('.dashBoardPagination').bootpag({
+                  total: displayPageNo,
+                  page: 1,
+                  maxVisible: 5,
+                  leaps: true,
+                  firstLastUse: true,
+                  first: '←',
+                  last: '→',
+                  wrapClass: 'pagination',
+                  activeClass: 'active',
+                  disabledClass: 'disabled',
+                  nextClass: 'next',
+                  prevClass: 'prev',
+                  lastClass: 'last',
+                  firstClass: 'first'
+              }).on("page", function(event, num){
+                  $(".content4").html("Page " + num); // or some ajax content loading...
+                //   var postData =  {
+                //       "page": {
+                //         "pageNo": num,
+                //         "pageSize": 5
+                //       },
+                //       "sortBy":"loanId",
+                //       "sortOrder" : "DESC"
+                //   };
+
+				  var postData ={
+					"pageNo":num,
+				"pageSize":5,
+				"startDate":"2024-02-01",
+				"endDate":date,
+				"primaryType":"LENDER"
+				}
+
+                  var postData = JSON.stringify(postData);
+                  console.log(postData);
+                        $.ajax({
+                            url:paymentUpdateUrl,
+                            type:"POST",
+                            data:postData,
+                            contentType:"application/json",
+                            dataType:"json",
+                            success: function(response,textStatus,xhr){
+								console.log("data")
+                             console.log(response);
+                        
+
+
+							  const newArray = [];
+							  response.userDataList.map((data, index) => {
+					newArray.push({
+						userId: data.userId,
+						userName: data.userName,
+						mobileNumber: data.mobileNumber,
+						panNumber: data.panNumber,
+						address: data.address,
+						email: data.email,
+						primaryType: data.primaryType,
+						registeredDate: data.registeredDate,
+					});
+				});
+
+				const template = document.getElementById(
+					"scriptfdinvoiceList11"
+				).innerHTML;
+				Mustache.parse(template);
+				const html = Mustache.to_html(template, {
+					data: newArray,
+				});$("#displayfdinvoiceList11").html(html);
+                              
+                           },
+                        error: function(xhr,textStatus,errorThrown){
+                          console.log('Error Something');
+                        },
+                        beforeSend: function(xhr) {
+                          xhr.setRequestHeader("accessToken",saccessToken);
+                  }
+              });
+            });    
+			}
+		}
+	} catch (error) {
+		$(".fdinvoiceNodata").show();
+		console.info("Error Something Went Wrong");
+	}
+};
+
+const numberOfRegistered11 = async () => {
+
+	const suserId = getCookie("sUserId");
+	const sprimaryType = getCookie("sUserType");
+	const saccessToken = getCookie("saccessToken");
+
+	const paymentUpdateUrl = `${apiBaseURLOXY}numberOfRegisteredUsers`;
+
+	const startDate = $(".registerStartdate").val();
+	const endDate = $(".registerUserEnddate").val();
+	const type = $(".choosetype").val();
+
+	const postData = {
+		"pageNo":1,
+		"pageSize":10,
+		startDate,
+		endDate,
+		"primaryType":type
+	};
+
+	const postDataJson = JSON.stringify(postData);
+
+	try {
+		const response = await fetch(paymentUpdateUrl, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				accessToken: saccessToken,
+			},
+			body: postDataJson,
+		});
+
+		if (!response.ok) {
+			$(".fdinvoiceNodata").show();
+			throw new Error("Request failed with status " + response.status);
+		} else if (response.ok) {
+			const data = await response.json();
+
+			console.log(data);
+
+			if (data.length == 0) {
+				$(".fdinvoiceNodata").show();
+			} else {
+				const newArray = [];
+				data.userDataList.map((data, index) => {
+					newArray.push({
+						userId: data.userId,
+						userName: data.userName,
+						mobileNumber: data.mobileNumber,
+						panNumber: data.panNumber,
+						address: data.address,
+						email: data.email,
+						primaryType: data.primaryType,
+						registeredDate: data.registeredDate,
+					});
+				});
+
+				const template = document.getElementById(
+					"scriptfdinvoiceList11"
+				).innerHTML;
+				Mustache.parse(template);
+				const html = Mustache.to_html(template, {
+					data: newArray,
+				});
+				$("#displayfdinvoiceList11").html(html);
+			}
+		}
+	} catch (error) {
+		$(".fdmonthlyNodata").show();
+		console.info("Error Something Went Wrong");
+	}
+};  
+
+const registerLenderDownload = async () => {
+
+	const suserId = getCookie("sUserId");
+	const sprimaryType = getCookie("sUserType");
+	const saccessToken = getCookie("saccessToken");
+
+	const paymentUpdateUrl = `${apiBaseURLOXY}newLenders_excel_sheet`;
+
+	const startDate = $(".registerStartdate").val();
+	const endDate = $(".registerUserEnddate").val();
+
+	const postData = {
+		startDate,
+		endDate,
+	};
+
+	const postDataJson = JSON.stringify(postData);
+
+	try {
+		const response = await fetch(paymentUpdateUrl, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				accessToken: saccessToken,
+			},
+			body: postDataJson,
+		});
+
+		if (!response.ok) {
+			$(".fdinvoiceNodata").show();
+			throw new Error("Request failed with status " + response.status);
+		} else if (response.ok) {
+			const data = await response.json();
+			console.log(data);
+
+			if (data.length == 0) {
+				$(".fdinvoiceNodata").show();
+
+			} else {
+
+				$(".fdinvoiceNodata").hide();
+
+
+                 const newArray=[];
+
+                   const obj={
+                   	so:1,
+                   	downloadUrl:data.downloadUrl,
+                   	emailSent : data.emailStatus ,
+                   }
+                  newArray.push(obj);
+
+				const template = document.getElementById(
+					"scriptfdinvoiceList"
+				).innerHTML;
+				Mustache.parse(template);
+				const html = Mustache.to_html(template, {
+					data: newArray,
+				});
+				$("#displayfdinvoiceList").html(html);
+			}
+		}
+	} catch (error) {
+		$(".fdmonthlyNodata").show();
+		console.info("Error Something Went Wrong");
+	}
+};
 const myreferalMonthWiseBreakUp=async (subrefealId)=>{
 	const curentpage=document.querySelectorAll(".viewreferalMonthlyPagination > ul > li.active > a");
      let activepageno = "";

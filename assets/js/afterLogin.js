@@ -77,6 +77,15 @@ $(document).ready(function () {
 		let baseUrl = "https://fintech.oxyloans.com/oxyloans/";
 	}
 
+
+
+
+	// if (userisIn == "prod") {
+	// 	apiBaseURLOXY = "https://fintech.oxyloans.com/oxyloans/v1/user/";
+	// } else {
+	// 	apiBaseURLOXY =
+	// 	"http://ec2-15-207-239-145.ap-south-1.compute.amazonaws.com:8080/oxyloans/v1/user/";
+	// }
 	(function () {
 		newprofileCallDetails();
 		getSessionExpireData();

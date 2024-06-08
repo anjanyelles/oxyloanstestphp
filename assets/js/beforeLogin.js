@@ -1,4 +1,4 @@
-let userisIn = "local";
+let userisIn = "prod";
 
 let userenteredOTP = 1;
 let userID = 0;
@@ -22,6 +22,14 @@ $(document).ready(function () {
 	} else { 
 		baseUrl = "https://fintech.oxyloans.com/oxyloans/";
 	}
+
+
+	// if (userisIn == "prod") {
+	// 	baseUrl = "https://fintech.oxyloans.com/oxyloans/v1/user/";
+	// } else {
+	// 	baseUrl =
+	// 	"http://ec2-15-207-239-145.ap-south-1.compute.amazonaws.com:8080/oxyloans/v1/user/";
+	// }
 
 	//lender validations starts//
 	$("#lenderAmtValue").on("keypress", function (e) {
