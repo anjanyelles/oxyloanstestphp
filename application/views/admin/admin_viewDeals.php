@@ -20,6 +20,7 @@ $dealStatus="CLOSED";
             </h3>
 
 
+
         </div></br></br></br></br></br>
         <div class="alert alert-success dealClosedSuccess" role="alert" style="display: none;">
             <strong>Deal Closed successfully.</strong>
@@ -32,7 +33,7 @@ $dealStatus="CLOSED";
             <div class="col-xs-12">
                 <div class="box box-primary">
                     <div class="box-header">
-                        <div class="col-md-6  runningheader">
+                        <div class="col-md-12  runningheader">
                             <a href="viewDeals?status=running">
                                 <button class=" btn btn-success btnRoundUp" style="border-radius: 5px;">
                                     Regular Running Deals <i class="fa fa-angle-double-right"></i>
@@ -45,7 +46,12 @@ $dealStatus="CLOSED";
                                     Regular Participation Closed Deals <i class="fa fa-angle-double-right"></i>
                                 </button>
                             </a>
-
+                            <a href="viewDeals?status=OPENINFUTURE" class="compleated-Btn">
+                                <button class=" btn btn-info btn-top-alg"
+                                    style="border-radius: 5px; margin: 0px;">
+                                    Future  Deals <i class="fa fa-angle-double-right"></i>
+                                </button>
+                            </a>
 
                         </div>
                         <div class="col-md-6 pull-right">
@@ -135,6 +141,9 @@ $dealStatus="CLOSED";
             {{^withdrawalAndPrincipalReturned}}
             0
              {{/withdrawalAndPrincipalReturned}}
+             <br>
+             ParticipationCount : {{participationCount}}
+             PrincipalReturnedCount: {{principalReturnedCount}}
 
         </td>
 

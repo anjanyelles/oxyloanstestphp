@@ -20,7 +20,7 @@
     <section class="content">
         <!-- Info boxes -->
         <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="info-box">
                     <span class="info-box-icon bg-aqua"><i class="ion ion-ios-people-outline"></i></span>
 
@@ -30,10 +30,11 @@
                     </div>
                     <!-- /.info-box-content -->
                 </div>
+                
                 <!-- /.info-box -->
             </div>
             <!-- /.col -->
-            <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="col-md-3 col-sm-3 col-xs-12">
                 <a href="lendersapplications?getfornotifications=0">
                     <div class="info-box">
                         <span class="info-box-icon bg-green"><i class="ion-android-contacts"></i></span>
@@ -41,6 +42,21 @@
                         <div class="info-box-content">
                             <span class="info-box-text">Lenders</span>
                             <span class="info-box-number  totalLenders">2000</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </a>
+            </div>
+            <!-- /.col -->
+
+              <div class="col-md-3 col-sm-3 col-xs-12">
+                <a href="activLendersParicipationAmountAndCount">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-teal"><i class="ion-android-contacts"></i></span>
+                        <div class="info-box-content ">
+                            <span class="info-box-text">Active lenders</span>
+                            <span class="info-box-number totalCount11">2000</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -120,14 +136,12 @@
 
         </div>
                     </div>
-   
+
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div class="table-responsive">
-    
-                           
-                        
-                        <canvas id="myChart"></canvas>
+
+                             <canvas id="myChart"></canvas>
                          <!--    <table class="table no-margin">
                                 <thead>
                                     <tr>
@@ -1983,6 +1997,7 @@ $(document).ready(function() {
     loadRefereepaymentlist();
     rejectedCmsFiles();
     lenderdashboardGraphs();
+    loadapproverefereamount11();
     //feePaidClick();
 });
 </script>

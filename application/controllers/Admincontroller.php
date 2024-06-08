@@ -637,6 +637,17 @@ class Admincontroller extends Globalcontroller {
 	}
 
 
+	public function ActivLendersParicipationAmountAndCount(){
+		$this->load->view('admin/activLendersParicipationAmountAndCount');
+	}
+
+	public function borrowerFdDetails(){
+		$this->load->view('admin/borrowerfddetails');
+	  }
+	public function RegisteredUsers(){
+		$this->load->view('admin/RegisteredUsers');
+	}
+
 	 public function fdClosedDetails(){
       $this->load->view('admin/admin_fdClosedDetails');
 	}

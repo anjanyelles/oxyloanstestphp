@@ -504,4 +504,12 @@ $route['partner/PartnerEarnings'] = 'PartnerController/PartnerEarnings';
 $route['partner/PartnerVerification'] = 'PartnerController/PartnerVerification';
 $route['partner/partnerUploaddocs'] = 'PartnerController/PartnerUploaddocs';
 $route['partner/PartnerBorrowerInfo'] = 'PartnerController/PartnerBorrowerInfo';
+
+
+
+
+
+$route['admin/activLendersParicipationAmountAndCount'] = 'Admincontroller/activLendersParicipationAmountAndCount';
+$route['admin/RegisteredUsers'] = 'Admincontroller/RegisteredUsers';
+$route['admin/borrowerfddetails'] = 'Admincontroller/borrowerfddetails';
 $route['admin/participatedUsers'] = 'Admincontroller/participatedUsers';
